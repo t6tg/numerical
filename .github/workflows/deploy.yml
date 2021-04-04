@@ -1,26 +1,25 @@
-name: Deployment
+name: deploy
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.16.0]
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Packages
-      run: cd client && npm install
-    - name: Build page
-      run: cd client && npm run build
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: ./client/build
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version:  14.x
+      - name: Install Dependency
+        run: cd client && npm install
+      - name: build
+        run: cd client && npm run build
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            PUBLISH_BRANCH: gh-pages
+            publish_dir: ./client/build
+            CLEAN: true
