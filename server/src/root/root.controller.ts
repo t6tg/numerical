@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { IBisection, IFalsePosition } from './root.schema';
+import { IBisection, IFalsePosition, INewton } from './root.schema';
 import { RootService } from './root.service';
 
 @Controller('root')
@@ -14,5 +14,10 @@ export class RootController {
   @Post('/falsePosition')
   falsePosition(@Body() data: IFalsePosition) {
     return this.rootService.falsePosition(data);
+  }
+
+  @Post('/newton')
+  newton(@Body() data: INewton) {
+    return this.rootService.newton(data);
   }
 }

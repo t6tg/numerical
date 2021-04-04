@@ -9,6 +9,7 @@ function FalsePosition() {
         xl: 0,
         xr: 0,
         error: 0,
+        x1: 0,
     })
     const [result, setResult] = useState(null)
     const [submit, setSubmit] = useState(false)

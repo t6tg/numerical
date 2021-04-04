@@ -1,20 +1,6 @@
 import React, { useState } from 'react'
-import {
-    Input,
-    Label,
-    Button,
-    TableFooter,
-    Pagination,
-} from '@windmill/react-ui'
+import { Input, Label, Button } from '@windmill/react-ui'
 import { setting } from '../../config/config'
-import {
-    TableContainer,
-    Table,
-    TableHeader,
-    TableBody,
-    TableRow,
-    TableCell,
-} from '@windmill/react-ui'
 import axios from 'axios'
 import NTable from '../Table'
 
