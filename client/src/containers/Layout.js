@@ -1,5 +1,5 @@
-import React, { useContext, Suspense, useEffect, lazy } from 'react'
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
+import React, { useContext, Suspense, lazy } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
@@ -11,12 +11,7 @@ import { SidebarContext } from '../context/SidebarContext'
 const Page404 = lazy(() => import('../pages/404'))
 
 function Layout() {
-    const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
-    let location = useLocation()
-
-    useEffect(() => {
-        closeSidebar()
-    }, [location])
+    const { isSidebarOpen } = useContext(SidebarContext)
 
     return (
         <div
