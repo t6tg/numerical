@@ -14,7 +14,7 @@ import {
 function Newton() {
     const [data, setData] = useState({
         x0: 0,
-        error: 0,
+        error: 0.000001,
     })
     const [result, setResult] = useState(null)
     const [submit, setSubmit] = useState(false)

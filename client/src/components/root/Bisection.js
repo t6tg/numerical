@@ -8,7 +8,7 @@ function Bisection() {
     const [data, setData] = useState({
         xl: 0,
         xr: 0,
-        error: 0,
+        error: 0.000001,
     })
     const [result, setResult] = useState(null)
     const [submit, setSubmit] = useState(false)
