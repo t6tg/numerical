@@ -4,6 +4,8 @@ const Dashboard = lazy(() => import('../pages/Dashboard'))
 const BisectionPage = lazy(() => import('../pages/root/BisectionPage'))
 const FalsePositionPage = lazy(() => import('../pages/root/FalsePositionPage'))
 const NewtonPage = lazy(() => import('../pages/root/NewtonPage'))
+const SecantPage = lazy(() => import('../pages/root/SecantPage'))
+const OnepointPage = lazy(() => import('../pages/root/OnepointPage'))
 
 const routes = [
     {
@@ -26,12 +28,14 @@ const routes = [
         component: NewtonPage,
     },
     {
-        path: '/onepoint',
+        path: '/root/onepoint',
         name: 'One Point',
+        component: OnepointPage,
     },
     {
-        path: '/secant',
+        path: '/root/secant',
         name: 'Secant',
+        component: SecantPage,
     },
 ]
 
