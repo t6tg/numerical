@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { IBisection, IFalsePosition, INewton } from './root.schema';
+import {
+  IBisection,
+  IFalsePosition,
+  INewton,
+  IOnePoint,
+  ISecant,
+} from './root.schema';
 import { pow } from 'mathjs';
 
 @Injectable()
@@ -116,6 +122,55 @@ export class RootService {
         diffx,
         er,
       });
+      i++;
+    }
+    return { data: result };
+  }
+
+  secant(data: ISecant) {
+    let result = [];
+    let x0 = data.x0;
+    let x1 = data.x1;
+    let i = 1;
+    let xi, fx0, fx1, deltax;
+    let er = 1;
+    let er1 = data.error;
+    if (er1 == null || er1 <= 0) {
+      er1 = 0.000001;
+    }
+    while (er >= er1) {
+      if (i > 0) {
+        fx0 = (Math.pow(x0, 2) - 7).toFixed(5);
+        fx1 = (Math.pow(x1, 2) - 7).toFixed(5);
+        deltax = parseFloat(((fx1 * (x0 - x1)) / (fx0 - fx1)).toFixed(5));
+        xi = parseFloat((x1 - deltax).toFixed(5));
+        er = parseFloat(Math.abs((xi - x1) / xi).toFixed(6));
+        x0 = x1;
+        x1 = xi;
+        result.push({ iteration: i, x0, x1, fx0, fx1, deltax, xi, er });
+      }
+      i++;
+    }
+    return { data: result };
+  }
+
+  onepoint(data: IOnePoint) {
+    let result = [];
+    let x = data.x;
+    let i = 0;
+    let xi;
+    let er = 1;
+    let er1 = data.error;
+    if (er1 == null || er1 <= 0) {
+      er1 = 0.000001;
+    }
+    while (er >= er1) {
+      if (i > 0) {
+        xi = 1 / 4 + x / 2;
+        er = parseFloat(Math.abs((xi - x) / xi).toFixed(5));
+        x = xi;
+        result.push({ iteration: i, x, xi, er });
+      }
       i++;
     }
     return { data: result };
