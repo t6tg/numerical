@@ -17,9 +17,4 @@ jobs:
       - name: build
         run: cd client && npm run build
       - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages -d ./client/build
-            publish_dir: ./client/build
-            CLEAN: true
+        run: cd client && npm run deploy
