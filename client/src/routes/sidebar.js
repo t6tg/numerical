@@ -37,6 +37,40 @@ const routes = [
             },
         ],
     },
+    {
+        icon: 'HeartIcon',
+        name: 'Linear Algebraic',
+        routes: [
+            {
+                path: '/app/linear/cramer',
+                name: "Cramer's Rule",
+            },
+            {
+                path: '/app/linear/gauss-e',
+                name: 'Gauss-Elimination Method',
+            },
+            {
+                path: '/app/linear/gauss-j',
+                name: 'Gauss-Jordan Method',
+            },
+            {
+                path: '/app/linear/lu',
+                name: 'LU Decomposition Method',
+            },
+            {
+                path: '/app/linear/jacobi',
+                name: 'Jacobi Iteration Method',
+            },
+            {
+                path: '/app/linear/gauss-s',
+                name: 'Gauss-Seidel',
+            },
+            {
+                path: '/app/linear/conj',
+                name: 'Conjugate Gradient Method',
+            },
+        ],
+    },
 ]
 
 export default routes

@@ -6,6 +6,13 @@ const FalsePositionPage = lazy(() => import('../pages/root/FalsePositionPage'))
 const NewtonPage = lazy(() => import('../pages/root/NewtonPage'))
 const SecantPage = lazy(() => import('../pages/root/SecantPage'))
 const OnepointPage = lazy(() => import('../pages/root/OnepointPage'))
+const CramerPage = lazy(() => import('../pages/linear/CramerPage'))
+const GaussEPage = lazy(() => import('../pages/linear/GaussEPage'))
+const GaussJPage = lazy(() => import('../pages/linear/GaussJPage'))
+const GaussSPage = lazy(() => import('../pages/linear/GaussSPage'))
+const LUPage = lazy(() => import('../pages/linear/LUPage'))
+const JacobPage = lazy(() => import('../pages/linear/JacobPage'))
+const ConJPage = lazy(() => import('../pages/linear/ConJPage'))
 
 const routes = [
     {
@@ -36,6 +43,41 @@ const routes = [
         path: '/root/secant',
         name: 'Secant',
         component: SecantPage,
+    },
+    {
+        path: '/linear/cramer',
+        name: "Cramer's Rule",
+        component: CramerPage,
+    },
+    {
+        path: '/linear/gauss-e',
+        name: 'Gauss-Elimination Method',
+        component: GaussEPage,
+    },
+    {
+        path: '/linear/gauss-j',
+        name: 'Gauss-Jordan Method',
+        component: GaussJPage,
+    },
+    {
+        path: '/linear/lu',
+        name: 'LU Decomposition Method',
+        component: LUPage,
+    },
+    {
+        path: '/linear/jacobi',
+        name: 'Jacobi Iteration Method',
+        component: JacobPage,
+    },
+    {
+        path: '/linear/gauss-s',
+        name: 'Gauss-Seidel',
+        component: GaussSPage,
+    },
+    {
+        path: '/linear/conj',
+        name: 'Conjugate Gradient Method',
+        component: ConJPage,
     },
 ]
 

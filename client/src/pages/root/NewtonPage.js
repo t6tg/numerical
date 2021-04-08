@@ -4,10 +4,10 @@ import PageTitle from '../../components/Typography/PageTitle'
 
 function NewtonPage() {
     return (
-        <div>
-            <PageTitle>Newton</PageTitle>
+        <PageTitle>
+            Newton
             <Newton />
-        </div>
+        </PageTitle>
     )
 }
 
