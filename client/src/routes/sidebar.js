@@ -71,6 +71,24 @@ const routes = [
             },
         ],
     },
+    {
+        icon: 'SunIcon',
+        name: 'Regression',
+        routes: [
+            {
+                path: '/app/regression/linear',
+                name: 'Linear',
+            },
+            {
+                path: '/app/regression/multi',
+                name: 'MultipleLinear',
+            },
+            {
+                path: '/app/regression/poly',
+                name: 'Polynomial',
+            },
+        ],
+    },
 ]
 
 export default routes

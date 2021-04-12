@@ -13,6 +13,9 @@ const GaussSPage = lazy(() => import('../pages/linear/GaussSPage'))
 const LUPage = lazy(() => import('../pages/linear/LUPage'))
 const JacobPage = lazy(() => import('../pages/linear/JacobPage'))
 const ConJPage = lazy(() => import('../pages/linear/ConJPage'))
+const LinearPage = lazy(() => import('../pages/regression/LinearPage'))
+const PolyPage = lazy(() => import('../pages/regression/PolyPage'))
+const MultiPage = lazy(() => import('../pages/regression/MultiPage'))
 
 const routes = [
     {
@@ -78,6 +81,21 @@ const routes = [
         path: '/linear/conj',
         name: 'Conjugate Gradient Method',
         component: ConJPage,
+    },
+    {
+        path: '/regression/linear',
+        name: 'Linear',
+        component: LinearPage,
+    },
+    {
+        path: '/regression/multi',
+        name: 'MultipleLinear',
+        component: MultiPage,
+    },
+    {
+        path: '/regression/poly',
+        name: 'Polynomial',
+        component: PolyPage,
     },
 ]
 
