@@ -6,6 +6,7 @@ import NTable from '../Table'
 
 function Bisection() {
     const [data, setData] = useState({
+        eq: 'x^4-13',
         xl: 0,
         xr: 0,
         error: 0.000001,
@@ -19,8 +20,8 @@ function Bisection() {
                 <span>Equation : </span>
                 <Input
                     className="my-2 outline-none"
-                    defaultValue="(x^4)-13"
-                    disabled
+                    defaultValue="x^4-13"
+                    onChange={(e) => setData({ ...data, eq: e.target.value })}
                 />
             </Label>
             <Label>
@@ -36,6 +37,7 @@ function Bisection() {
                     }}
                 />
             </Label>
+
             <Label>
                 <span>XR : </span>
                 <Input

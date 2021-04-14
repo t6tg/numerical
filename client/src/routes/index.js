@@ -16,6 +16,8 @@ const ConJPage = lazy(() => import('../pages/linear/ConJPage'))
 const LinearPage = lazy(() => import('../pages/regression/LinearPage'))
 const PolyPage = lazy(() => import('../pages/regression/PolyPage'))
 const MultiPage = lazy(() => import('../pages/regression/MultiPage'))
+const NewtonDPage = lazy(() => import('../pages/inter/NewtonDPage'))
+const LagrangePage = lazy(() => import('../pages/inter/LagrangePage'))
 
 const routes = [
     {
@@ -96,6 +98,20 @@ const routes = [
         path: '/regression/poly',
         name: 'Polynomial',
         component: PolyPage,
+    },
+    {
+        path: '/inter/lag',
+        name: 'Lagrange polynomials',
+        component: LagrangePage,
+    },
+    {
+        path: '/inter/new',
+        name: "Newton's divided-differences",
+        component: NewtonDPage,
+    },
+    {
+        path: '/inter/spline',
+        name: 'Spline interpolation',
     },
 ]
 

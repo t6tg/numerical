@@ -89,6 +89,24 @@ const routes = [
             },
         ],
     },
+    {
+        icon: 'TrashIcon',
+        name: 'Interpolation and Extrapolation',
+        routes: [
+            {
+                path: '/app/inter/lag',
+                name: 'Lagrange polynomials',
+            },
+            {
+                path: '/app/inter/new',
+                name: "Newton's divided-differences",
+            },
+            {
+                path: '/app/inter/spline',
+                name: 'Spline interpolation',
+            },
+        ],
+    },
 ]
 
 export default routes

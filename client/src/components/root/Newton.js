@@ -13,6 +13,7 @@ import {
 
 function Newton() {
     const [data, setData] = useState({
+        eq: '(x^2)-7',
         x0: 0,
         error: 0.000001,
     })
@@ -25,7 +26,7 @@ function Newton() {
                 <Input
                     className="my-2 outline-none"
                     defaultValue="(x^2)-7"
-                    disabled
+                    onChange={(e) => setData({ ...data, eq: e.target.value })}
                 />
             </Label>
             <Label>

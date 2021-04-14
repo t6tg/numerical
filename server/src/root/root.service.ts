@@ -6,6 +6,7 @@ import {
   IOnePoint,
   ISecant,
 } from './root.schema';
+import { derivative, simplify, evaluate } from 'mathjs';
 import { pow } from 'mathjs';
 
 @Injectable()
@@ -21,10 +22,12 @@ export class RootService {
     while (er > er1) {
       //step1
       xm = (xl + xr) / 2;
-      fxm = Math.pow(xm, 4) - 13;
-      fxr = Math.pow(xr, 4) - 13;
+      let fx = (x) => {
+        let a = simplify(data.eq).toString();
+        return evaluate(a, { x });
+      };
       //step2
-      let check = fxm * fxr;
+      let check = fx(xm) * fx(xr);
       //step3
       if (check < 0) {
         //step4
@@ -65,25 +68,23 @@ export class RootService {
     let er1 = data.error;
     let x1, x1before, fxl, fxr;
     let result = [];
+    let fx = (x) => {
+      let a = simplify(data.eq).toString();
+      return evaluate(a, { x });
+    };
     while (er > er1) {
-      //step1
-      fxl = pow(xl, 4) - 13;
-      fxr = pow(xr, 4) - 13;
-      //step2
-      x1 = ((xl * fxr - xr * fxl) / (fxr - fxl)).toFixed(6);
+      x1 = (xl * fx(xr) - xr * fx(xl)) / (fx(xr) - fx(xl));
       //step3
-      let check = x1 * fxr;
+      let check = x1 * fx(xr);
       if (check < 0) {
-        //step4
         if (i > 0) {
-          er = parseFloat(Math.abs((x1 - x1before) / x1).toFixed(6));
+          er = parseFloat(Math.abs((x1 - x1before) / x1).toFixed(5));
         }
         xl = x1;
         x1before = x1;
       } else {
-        //step4
         if (i > 0) {
-          er = parseFloat(Math.abs((x1 - x1before) / x1).toFixed(6));
+          er = parseFloat(Math.abs((x1 - x1before) / x1).toFixed(5));
         }
         xr = x1;
         x1before = x1;
@@ -108,11 +109,19 @@ export class RootService {
       i = 1,
       er = 1,
       er1 = data.error;
-    let xi, fx, diffx;
+    let xi;
+    let fx = (x) => {
+      let a = simplify(data.eq).toString();
+      return evaluate(data.eq, { x });
+    };
+
+    let diffx = (x) => {
+      let dif = derivative(data.eq, 'x').toString();
+      dif = simplify(dif).toString();
+      return evaluate(dif, { x });
+    };
     while (er > er1) {
-      fx = (pow(x, 2) - 7).toFixed(5);
-      diffx = (x * 2).toFixed(5);
-      xi = x - parseFloat((fx / diffx).toFixed(5));
+      xi = x - parseFloat(fx(x)) / parseFloat(diffx(x));
       er = parseFloat(Math.abs((xi - x) / xi).toFixed(5));
       x = xi;
       result.push({
@@ -138,11 +147,17 @@ export class RootService {
     if (er1 == null || er1 <= 0) {
       er1 = 0.000001;
     }
+
+    let fx = (x) => {
+      let a = simplify(data.eq).toString();
+      return evaluate(a, { x });
+    };
+
     while (er >= er1) {
       if (i > 0) {
-        fx0 = (Math.pow(x0, 2) - 7).toFixed(5);
-        fx1 = (Math.pow(x1, 2) - 7).toFixed(5);
-        deltax = parseFloat(((fx1 * (x0 - x1)) / (fx0 - fx1)).toFixed(5));
+        deltax = parseFloat(
+          ((fx(x1) * (x0 - x1)) / (fx(x0) - fx(x1))).toFixed(5),
+        );
         xi = parseFloat((x1 - deltax).toFixed(5));
         er = parseFloat(Math.abs((xi - x1) / xi).toFixed(6));
         x0 = x1;
@@ -164,9 +179,13 @@ export class RootService {
     if (er1 == null || er1 <= 0) {
       er1 = 0.000001;
     }
+    let fx = (x) => {
+      let a = simplify(data.eq).toString();
+      return evaluate(a, { x });
+    };
     while (er >= er1) {
       if (i > 0) {
-        xi = 1 / 4 + x / 2;
+        xi = fx(x);
         er = parseFloat(Math.abs((xi - x) / xi).toFixed(5));
         x = xi;
         result.push({ iteration: i, x, xi, er });

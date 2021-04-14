@@ -13,6 +13,7 @@ import {
 
 function OnePoint() {
     const [data, setData] = useState({
+        eq: '(1/4)+(x/2)',
         x: 0,
         error: 0.000001,
     })
@@ -25,7 +26,7 @@ function OnePoint() {
                 <Input
                     className="my-2 outline-none"
                     defaultValue="(1/4)+(x/2)"
-                    disabled
+                    onChange={(e) => setData({ ...data, eq: e.target.value })}
                 />
             </Label>
             <Label>

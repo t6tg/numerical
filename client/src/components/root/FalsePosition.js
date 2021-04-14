@@ -6,6 +6,7 @@ import NTable from '../Table'
 
 function FalsePosition() {
     const [data, setData] = useState({
+        eq: '(x^4)-13',
         xl: 0,
         xr: 0,
         error: 0.000001,
@@ -21,7 +22,7 @@ function FalsePosition() {
                 <Input
                     className="my-2 outline-none"
                     defaultValue="(x^4)-13"
-                    disabled
+                    onChange={(e) => setData({ ...data, eq: e.target.value })}
                 />
             </Label>
             <Label>
