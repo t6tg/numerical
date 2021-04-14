@@ -10,4 +10,9 @@ interface ILagrange {
   y: Object;
   xw: number;
 }
-export { INewtonD, ILagrange };
+
+interface ISpline {
+  x: Object;
+  y: Object;
+}
+export { INewtonD, ILagrange, ISpline };

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { INewtonD, ILagrange } from './inter.schema';
+import { INewtonD, ILagrange, ISpline } from './inter.schema';
+const Spline = require('cubic-spline');
 
 @Injectable()
 export class InterService {
@@ -81,5 +82,19 @@ export class InterService {
       yp = yp + p * y[i];
     }
     return { data: parseFloat(yp.toFixed(5)) };
+  }
+  spline(data: ISpline) {
+    let x = [];
+    let y = [];
+    for (const key in data.x) {
+      x.push(data.x[key]);
+    }
+    for (const key in data.y) {
+      y.push(data.y[key]);
+    }
+    const spline = new Spline(x, y);
+    console.log(spline);
+
+    return { data: spline };
   }
 }

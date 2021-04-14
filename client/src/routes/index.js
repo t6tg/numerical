@@ -18,6 +18,7 @@ const PolyPage = lazy(() => import('../pages/regression/PolyPage'))
 const MultiPage = lazy(() => import('../pages/regression/MultiPage'))
 const NewtonDPage = lazy(() => import('../pages/inter/NewtonDPage'))
 const LagrangePage = lazy(() => import('../pages/inter/LagrangePage'))
+const SplinePage = lazy(() => import('../pages/inter/SplinePage'))
 
 const routes = [
     {
@@ -112,6 +113,7 @@ const routes = [
     {
         path: '/inter/spline',
         name: 'Spline interpolation',
+        component: SplinePage,
     },
 ]
 
