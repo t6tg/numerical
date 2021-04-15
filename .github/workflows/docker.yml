@@ -14,11 +14,8 @@ jobs:
         run: docker-compose up -d --build
       - name: Check running containers
         run: docker ps -a
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+      - name: Publish Image
+        uses: craftech-io/package-action@v3.1.0
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: t6tg/numerical/client-numer
-          tag_with_ref: true
+          tags: latest
+          access_token: ${{ secrets.GITHUB_TOKEN }}
