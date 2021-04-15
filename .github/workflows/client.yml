@@ -19,6 +19,10 @@ jobs:
       - name: Docker Build Client
         run: |
           docker build ./client -t t6tg/client-numerical:latest
+      - name: Docker Build Server
+        run: |
+          docker build ./server -t t6tg/server-numerical:latest    
       - name: Docker Push
         run: |
           docker push t6tg/client-numerical:latest
+          docker push t6tg/server-numerical:latest
