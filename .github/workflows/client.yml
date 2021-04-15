@@ -15,7 +15,7 @@ jobs:
       - name: Check running containers
         run: docker ps -a
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@vv2.4.0
+        uses: docker/build-push-action@v2.4.0
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
