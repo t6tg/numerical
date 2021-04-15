@@ -14,11 +14,9 @@ jobs:
         run: docker-compose up -d --build
       - name: Check running containers
         run: docker ps -a
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+      - name: Push to Github Package
+        uses: VaultVulp/gp-docker-action@1.1.8
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: t6tg/numerical/numerical
-          tag_with_ref: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: numerical
+          image-tag: head
