@@ -14,11 +14,9 @@ jobs:
         run: docker-compose up -d --build
       - name: Check running containers
         run: docker ps -a
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v2
+      - name: publish
+        uses: pennsignals/publish_docker-compose@v0.1.0
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: t6tg/numerical/client-numer
-          tag_with_ref: true
+          version: '0.2.6-rc.1'
+          docker_compose: 'docker-compose.yml'
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
