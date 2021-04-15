@@ -16,7 +16,7 @@ function NTable({ Thead, Tbody }) {
                     <TableHeader>
                         <TableRow>
                             {Thead.map((r) => (
-                                <TableCell>{r}</TableCell>
+                                <TableCell key={r}>{r}</TableCell>
                             ))}
                         </TableRow>
                     </TableHeader>

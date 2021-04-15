@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Label, Button } from '@windmill/react-ui'
 import { setting } from '../../config/config'
+import { Line } from 'react-chartjs-2'
 import axios from 'axios'
 import NTable from '../Table'
 
@@ -12,7 +13,19 @@ function Bisection() {
         error: 0.000001,
     })
     const [result, setResult] = useState(null)
-    const [submit, setSubmit] = useState(false)
+
+    const graphs = {
+        labels: [],
+        datasets: [
+            {
+                label: '# of  Bisection',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(145, 70, 255)',
+                borderColor: 'rgba(145, 70, 255, 0.5)',
+            },
+        ],
+    }
 
     return (
         <div className="p-10 bg-white dark:bg-gray-700 rounded-md shadow-lg my-5">
@@ -75,18 +88,24 @@ function Bisection() {
                         data
                     )
                     setResult(JSON.parse(res.request.response).data)
-                    if (res.data.data.length !== 0) {
-                        setSubmit(true)
-                    }
                 }}
             >
                 Calculate
             </Button>
-            {result !== null && submit === true && (
-                <NTable
-                    Thead={['Iteration', 'XL', 'XR', 'XM', 'Error']}
-                    Tbody={result}
-                />
+            {result !== null && (
+                <div className="mt-10">
+                    {result.map((r) => {
+                        graphs.labels.push(r.xm)
+                        graphs.datasets[0].data.push(r.fxn)
+                        return ''
+                    })}
+                    <Line data={graphs} width={15} height={6} />
+                    <NTable
+                        key={result.iteration}
+                        Thead={['Iteration', 'XL', 'XR', 'XM', 'Error']}
+                        Tbody={result}
+                    />
+                </div>
             )}
         </div>
     )

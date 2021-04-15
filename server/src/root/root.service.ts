@@ -45,16 +45,22 @@ export class RootService {
         xmbefore = xm;
       }
       if (i > 0) {
+        let fxn = fx(xm);
+        xm = xm.toFixed(5);
+        fxn = parseFloat(fxn.toFixed(5));
         result.push({
           iteration: i,
           xl,
           xr,
           xm,
           er,
+          fxn,
         });
       }
       i++;
     }
+    console.log(result);
+
     return {
       data: result,
     };
@@ -90,11 +96,13 @@ export class RootService {
         x1before = x1;
       }
       if (i > 0) {
+        let fxn = fx(x1).toFixed(5);
         result.push({
           iteration: i,
           xl,
           xr,
           xm: x1,
+          fxn,
           er,
         });
       }
@@ -124,11 +132,15 @@ export class RootService {
       xi = x - parseFloat(fx(x)) / parseFloat(diffx(x));
       er = parseFloat(Math.abs((xi - x) / xi).toFixed(5));
       x = xi;
+      let fxn = fx(x).toFixed(5);
+      let fxp = fx(x);
+      let diffp = diffx(x);
       result.push({
         iteration: i,
         xi,
-        fx,
-        diffx,
+        fx: fxp,
+        diffx: diffp,
+        fxn,
         er,
       });
       i++;
@@ -162,7 +174,8 @@ export class RootService {
         er = parseFloat(Math.abs((xi - x1) / xi).toFixed(6));
         x0 = x1;
         x1 = xi;
-        result.push({ iteration: i, x0, x1, fx0, fx1, deltax, xi, er });
+        let fxn = fx(xi);
+        result.push({ iteration: i, x0, x1, fx0, fx1, deltax, xi, er, fxn });
       }
       i++;
     }
@@ -188,10 +201,12 @@ export class RootService {
         xi = fx(x);
         er = parseFloat(Math.abs((xi - x) / xi).toFixed(5));
         x = xi;
-        result.push({ iteration: i, x, xi, er });
+        let fxn = fx(xi);
+        result.push({ iteration: i, x, xi, er, fxn });
       }
       i++;
     }
+
     return { data: result };
   }
 }

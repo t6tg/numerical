@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Label, Button } from '@windmill/react-ui'
 import { setting } from '../../config/config'
+import { Line } from 'react-chartjs-2'
 import axios from 'axios'
 import NTable from '../Table'
 
@@ -14,6 +15,19 @@ function FalsePosition() {
     })
     const [result, setResult] = useState(null)
     const [submit, setSubmit] = useState(false)
+
+    const graphs = {
+        labels: [],
+        datasets: [
+            {
+                label: '# of  FalsePosition',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(145, 70, 255)',
+                borderColor: 'rgba(145, 70, 255, 0.5)',
+            },
+        ],
+    }
 
     return (
         <div className="p-10 bg-white dark:bg-gray-700 rounded-md shadow-lg my-5">
@@ -83,10 +97,18 @@ function FalsePosition() {
                 Calculate
             </Button>
             {result !== null && submit && (
-                <NTable
-                    Thead={['Iteration', 'XL', 'XR', 'X1', 'Error']}
-                    Tbody={result}
-                />
+                <div className="mt-10">
+                    {result.map((r) => {
+                        graphs.labels.push(r.xm)
+                        graphs.datasets[0].data.push(r.fxn)
+                        return ''
+                    })}
+                    <Line data={graphs} width={15} height={6} />
+                    <NTable
+                        Thead={['Iteration', 'XL', 'XR', 'X1', 'Error']}
+                        Tbody={result}
+                    />
+                </div>
             )}
         </div>
     )

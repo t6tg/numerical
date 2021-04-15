@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Input, Label, Button } from '@windmill/react-ui'
 import axios from 'axios'
 import { setting } from '../../config/config'
+import { Line } from 'react-chartjs-2'
 import {
     TableContainer,
     Table,
@@ -20,6 +21,20 @@ function Secant() {
     })
     const [result, setResult] = useState(null)
     const [submit, setSubmit] = useState(false)
+
+    const graphs = {
+        labels: [],
+        datasets: [
+            {
+                label: '# of  Newton',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(145, 70, 255)',
+                borderColor: 'rgba(145, 70, 255, 0.5)',
+            },
+        ],
+    }
+
     return (
         <div className="p-10 bg-white dark:bg-gray-700 rounded-md shadow-lg my-5">
             <Label>
@@ -75,71 +90,79 @@ function Secant() {
                 Calculate
             </Button>
             {result !== null && submit && (
-                <div className="my-10">
-                    <TableContainer>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableCell>Iteration</TableCell>
-                                    <TableCell>x0</TableCell>
-                                    <TableCell>x1</TableCell>
-                                    <TableCell>fx0</TableCell>
-                                    <TableCell>fx1</TableCell>
-                                    <TableCell>ΔX</TableCell>
-                                    <TableCell>xi</TableCell>
-                                    <TableCell>Error</TableCell>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {result.map((r) => (
-                                    <TableRow key={r.iteration}>
-                                        <TableCell>
-                                            <div className="flex items-center text-sm">
-                                                <span className="font-semibold ml-2">
-                                                    {r.iteration}
-                                                </span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.x0}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.x1}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.fx0}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.fx1}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.deltax}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.xi}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-sm">
-                                                {r.er}
-                                            </span>
-                                        </TableCell>
+                <div className="mt-10">
+                    {result.map((r) => {
+                        graphs.labels.push(r.xi)
+                        graphs.datasets[0].data.push(r.fxn)
+                        return ''
+                    })}
+                    <Line data={graphs} width={15} height={6} />
+                    <div className="my-10">
+                        <TableContainer>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableCell>Iteration</TableCell>
+                                        <TableCell>x0</TableCell>
+                                        <TableCell>x1</TableCell>
+                                        <TableCell>fx0</TableCell>
+                                        <TableCell>fx1</TableCell>
+                                        <TableCell>ΔX</TableCell>
+                                        <TableCell>xi</TableCell>
+                                        <TableCell>Error</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                                </TableHeader>
+                                <TableBody>
+                                    {result.map((r) => (
+                                        <TableRow key={r.iteration}>
+                                            <TableCell>
+                                                <div className="flex items-center text-sm">
+                                                    <span className="font-semibold ml-2">
+                                                        {r.iteration}
+                                                    </span>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.x0}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.x1}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.fx0}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.fx1}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.deltax}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.xi}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-sm">
+                                                    {r.er}
+                                                </span>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div>
             )}
         </div>
