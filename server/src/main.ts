@@ -8,7 +8,6 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Numerical Method API Document')
     .setVersion('1.0')
-    .addTag('Root of Equation')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
