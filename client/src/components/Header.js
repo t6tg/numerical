@@ -1,7 +1,7 @@
 import { WindmillContext } from '@windmill/react-ui'
 import React, { useContext } from 'react'
 import { SidebarContext } from '../context/SidebarContext'
-import { MenuIcon, MoonIcon, SunIcon } from '../icons'
+import { MenuIcon, MoonIcon, SunIcon, GithubIcon } from '../icons'
 
 function Header() {
     const { mode, toggleMode } = useContext(WindmillContext)
@@ -19,6 +19,12 @@ function Header() {
                 <ul className="flex items-center flex-shrink-0 space-x-6 content-end">
                     {/* <!-- Theme toggler --> */}
                     <li className="flex">
+                    <a href="https://github.com/t6tg/numerical">
+                            <GithubIcon
+                                className="w-5 h-5 mr-3"
+                                aria-hidden="true"
+                            />
+                        </a>
                         <button
                             className="rounded-md focus:outline-none focus:shadow-outline-purple"
                             onClick={toggleMode}

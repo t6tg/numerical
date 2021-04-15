@@ -41,6 +41,7 @@ function SidebarContent() {
                                     aria-hidden="true"
                                     icon={route.icon}
                                 />
+                                
                                 <span className="ml-4">{route.name}</span>
                             </NavLink>
                         </li>

@@ -6,7 +6,7 @@ function Dashboard() {
             <div className="my-5 container bg-white dark:bg-gray-700 p-3 rounded-md">
                 <img
                     src="https://media.tenor.com/images/33e555b1839136e3dbe3b536ac0f0441/tenor.gif"
-                    alt="ninoooooooo"
+                    alt="NiNo"
                     width="30%"
                     className="mx-auto rounded-lg object-cover"
                 />

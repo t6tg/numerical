@@ -29,7 +29,7 @@ https://hub.docker.com/repository/docker/t6tg/server-numerical
 http://localhost:5500/docs/
 ```
 
-## CI/CD ( Build Docker Image and Push to docker repository
+## CI/CD ( Build Docker Image and Push to docker repository )
 ```
 ├──.github/
 │ ├── workflows/

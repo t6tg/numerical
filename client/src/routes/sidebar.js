@@ -91,7 +91,7 @@ const routes = [
     },
     {
         icon: 'TrashIcon',
-        name: 'Interpolation and Extrapolation',
+        name: 'Interpolation',
         routes: [
             {
                 path: '/app/inter/lag',
