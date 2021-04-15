@@ -10,19 +10,6 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Build the docker-compose 
-        run: docker-compose up -d --build
-      - name: Check running containers
-        run: docker ps -a
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v2.4.0
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          file: ./client/Dockerfile
-          push: true
-          registry: docker.pkg.github.com
-          repository: t6tg/numerical/client-numerical
-          tag_with_ref: true
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Docker Build Client
+        run: |
+          docker build ./client -t t6tg/client-numerical:latest
