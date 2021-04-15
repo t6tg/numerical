@@ -14,9 +14,11 @@ jobs:
         run: docker-compose up -d --build
       - name: Check running containers
         run: docker ps -a
-      - name: Push to Github Package
-        uses: VaultVulp/gp-docker-action@1.1.8
+      - name: Build and push docker image
+        uses: docker/build-push-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: numerical
-          image-tag: head
+           username: ${{ secrets.DOCKER_USERNAME }}
+           password: ${{ secrets.DOCKER_PASSWORD }}
+           dockerfile: Dockerfile
+           repository: t6tg/numerical
+           tag_with_ref: true
