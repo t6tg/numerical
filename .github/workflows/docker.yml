@@ -20,5 +20,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: t6tg/numerical/numerical
+          repository: t6tg/numerical/client-numer
           tag_with_ref: true
