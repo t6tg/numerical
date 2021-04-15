@@ -14,11 +14,11 @@ jobs:
         run: docker-compose up -d --build
       - name: Check running containers
         run: docker ps -a
-      - name: Push Docker Image
+      - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: t6tg/numerical/numerical-image
-          tag_with_sha: true
+          repository: t6tg/numerical/numerical
+          tag_with_ref: true
