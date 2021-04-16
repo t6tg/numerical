@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ILinear, IMulti, IPoly } from './regression.schema';
 import { RegressionService } from './regression.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Least Squares Regression')
 @Controller('regression')
 export class RegressionController {
   constructor(private readonly regressionService: RegressionService) {}

@@ -86,6 +86,7 @@ export class InterService {
   spline(data: ISpline) {
     let x = [];
     let y = [];
+    let ks = [];
     for (const key in data.x) {
       x.push(data.x[key]);
     }
@@ -93,8 +94,9 @@ export class InterService {
       y.push(data.y[key]);
     }
     const spline = new Spline(x, y);
-    console.log(spline);
-
-    return { data: spline };
+    for (const key in spline.ks) {
+      ks.push(spline.ks[key]);
+    }
+    return { data: ks };
   }
 }

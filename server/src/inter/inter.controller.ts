@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ILagrange, INewtonD, ISpline } from './inter.schema';
 import { InterService } from './inter.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Inter Polation and Extrapolation')
 @Controller('inter')
 export class InterController {
   constructor(private readonly interService: InterService) {}

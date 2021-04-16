@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   IBisection,
   IFalsePosition,
@@ -8,6 +9,7 @@ import {
 } from './root.schema';
 import { RootService } from './root.service';
 
+@ApiTags('Root of Equation')
 @Controller('root')
 export class RootController {
   constructor(private readonly rootService: RootService) {}

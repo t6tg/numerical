@@ -91,11 +91,7 @@ const Spline = () => {
                 <div>
                     <Label className="my-4 text-2xl bg-gray-300 rounded-md p-3 dark:bg-gray-800">
                         <span>Result : </span>
-                        {JSON.stringify(result.data.string)}
-                    </Label>
-                    <Label className="my-4 text-2xl bg-gray-300 rounded-md p-3 dark:bg-gray-800">
-                        <span>Ans : </span>
-                        {JSON.stringify(result.ans[1])}
+                        {JSON.stringify(result.data)}
                     </Label>
                 </div>
             )}

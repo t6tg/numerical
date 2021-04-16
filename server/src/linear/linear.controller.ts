@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { IConJ, ICramer, IJacob } from './linear.schema';
 import { LinearService } from './linear.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Linear Algebraic Equations')
 @Controller('linear')
 export class LinearController {
   constructor(private readonly linearService: LinearService) {}
