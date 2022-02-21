@@ -1,6 +1,6 @@
 # numerical
 [![Docker](https://github.com/t6tg/numerical/actions/workflows/docker.yml/badge.svg)](https://github.com/t6tg/numerical/actions/workflows/docker.yml)
-
+[![CodeQL](https://github.com/t6tg/numerical/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/t6tg/numerical/actions/workflows/codeql-analysis.yml)
 
 ## Client Side
 ```
